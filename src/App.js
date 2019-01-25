@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 
@@ -106,13 +106,16 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1>Hi, New App!</h1>
-        <p className={classes.join(' ')}>This is first paragraph</p>
-        <button style={style}
-          onClick={this.togglePersonHandler}>Switch name</button>
-          {persons}
-      </div>
+      // if want media queries or animations, need to add StyleRoot component
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, New App!</h1>
+          <p className={classes.join(' ')}>This is first paragraph</p>
+          <button style={style}
+            onClick={this.togglePersonHandler}>Switch name</button>
+            {persons}
+        </div>
+      </StyleRoot>  
     );
   }
 }
