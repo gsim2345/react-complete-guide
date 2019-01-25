@@ -20,7 +20,7 @@ const cockpit = (props) => {
     return (
         // needs to be wrapped into a div
         <div className={classes.Cockpit}>
-            <h1>Hi, New App!</h1>
+            <h1>{props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>This is first paragraph</p>
             <button
                 className={btnClass}
