@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 
@@ -65,10 +64,6 @@ class App extends Component {
       border: "1px solid teal",
       padding: "8px",
       cursor: "pointer",
-      ':hover' : {
-        backgroundColor: 'lightgreen', 
-        color: 'black'
-      }
     };
 
     let persons = null;
@@ -107,7 +102,6 @@ class App extends Component {
 
     return (
       // if want media queries or animations, need to add StyleRoot component
-      <StyleRoot>
         <div className="App">
           <h1>Hi, New App!</h1>
           <p className={classes.join(' ')}>This is first paragraph</p>
@@ -115,9 +109,8 @@ class App extends Component {
             onClick={this.togglePersonHandler}>Switch name</button>
             {persons}
         </div>
-      </StyleRoot>  
     );
   }
 }
 
-export default Radium(App);
+export default App;
