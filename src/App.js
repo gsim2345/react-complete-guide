@@ -57,16 +57,9 @@ class App extends Component {
 
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid teal",
-      padding: "8px",
-      cursor: "pointer",
-    };
-
+    
     let persons = null;
+    let btnClass = "";
     //if (this.state.showPersons == true)
     if (this.state.showPersons) {
       persons = (
@@ -84,11 +77,7 @@ class App extends Component {
         </div> 
       );
 
-      style.backgroundColor = "red";
-      style[':hover']= {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      btnClass = classes.Red;
     }
 
     //let classes = ['red', 'bold'].join(' ');
@@ -105,7 +94,8 @@ class App extends Component {
         <div className={classes.App}>
           <h1>Hi, New App!</h1>
           <p className={assignedClasses.join(' ')}>This is first paragraph</p>
-          <button style={style}
+          <button
+            className={btnClass}
             onClick={this.togglePersonHandler}>Switch name</button>
             {persons}
         </div>
