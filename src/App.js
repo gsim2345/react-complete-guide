@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 
@@ -92,19 +92,19 @@ class App extends Component {
     }
 
     //let classes = ['red', 'bold'].join(' ');
-    let classes = [];
+    let assignedClasses = [];
     if (this.state.persons.length <=2) {
-      classes.push("red"); // classes = ['red']
+      assignedClasses.push(classes.red); // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); // // classes = ['red', bold]
+      assignedClasses.push(classes.bold); // // classes = ['red', bold]
     }
 
     return (
       // if want media queries or animations, need to add StyleRoot component
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi, New App!</h1>
-          <p className={classes.join(' ')}>This is first paragraph</p>
+          <p className={assignedClasses.join(' ')}>This is first paragraph</p>
           <button style={style}
             onClick={this.togglePersonHandler}>Switch name</button>
             {persons}
