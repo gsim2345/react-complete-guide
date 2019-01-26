@@ -4,15 +4,39 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      {id: "id1", name: "Max", age: 28},
-      {id: "id2", name: "Manu", age: 29},
-      {id: "id3", name: "Stephanie", age: 26}
-    ], 
-    otherState: 'some other value',
-    showPersons: false
+  // Component lyfecycle hooks: 
+  // 1.
+  // constructor is the only place where props can pass and used. Otherwise this.props 
+  // Needs to add super()
+  constructor(props) {
+    super(props);
+    console.log('[App.js] Inside Constructor', props);
+
+    // alternative syntax to initialize state from constructor:
+    this.state = {
+      persons: [
+        {id: "id1", name: "Max", age: 28},
+        {id: "id2", name: "Manu", age: 29},
+        {id: "id3", name: "Stephanie", age: 26}
+      ], 
+      otherState: 'some other value',
+      showPersons: false
+    }
   }
+
+  // Component lyfecycle hooks:
+  // 2. 
+  // only exists for historic reasons , will be deprecated in React 17 
+  componentWillMount() {
+    console.log('[App.js] Inside componentWillMount()');
+  }
+
+  // Component lyfecycle hooks:
+  // 4.
+  componentDidMount() {
+    console.log('[App.js] Inside componentDidMount()');
+  }
+  
 
   nameChangedHandler = (event, id) => {
     // find out which index belongs to that id parameter
@@ -56,8 +80,10 @@ class App extends Component {
   }
 
 
+  // component lifecycle hooks: 
+  // 3. 
   render() {
-    
+    console.log('[App.js] Inside render()');
     let persons = null;
     
     //if (this.state.showPersons == true)
