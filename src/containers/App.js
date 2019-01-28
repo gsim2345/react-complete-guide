@@ -40,7 +40,9 @@ class App extends Component {
   // UPDATE lifecycle (state)
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState);
-    return true;
+    // if no state changed, we don't update
+    return nextState.persons !== this.state.persons ||
+           nextState.showPersons !== this.state.showPersons;  
 }
 
 // UPDATE LIFECYCLE (state)
@@ -113,6 +115,7 @@ componentDidUpdate() {
 
     return (
         <div className={classes.App}>
+            <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
             <Cockpit 
             // props comes with Components, therefore we can acess it with this.props
             // there is no props passed into render, so we use this.props

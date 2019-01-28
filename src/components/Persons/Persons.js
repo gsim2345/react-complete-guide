@@ -36,8 +36,10 @@ class Persons extends Component {
   // worth to turn a component to a Class and add these lifecycle hooks, if for example receives a lot of props, and you only want to rerender if one of the props is changing.
   shouldComponentUpdate(nextProps, nextState) {
       console.log('[UPDATE Persons.js] Inside shouldComponentUpdate', nextProps, nextState);
-      // only updates if the new props is different then the original
-      return nextProps.persons !== this.props.persons;
+      // if no property changed, we don't update
+      return nextProps.persons !== this.props.persons || nextProps.changed !== this.props.changed ||
+      nextProps.clicked !== this.props.clicked;
+      
   }
 
   // UPDATE LIFECYCLE
