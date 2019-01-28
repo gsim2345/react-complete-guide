@@ -12,14 +12,14 @@ const cockpit = (props) => {
       assignedClasses.push(classes.bold); // // classes = ['red', bold]
     }
 
-    let btnClass = "";
+    let btnClass = classes.Button;
     if (props.showPersons) {
-        btnClass = classes.Red;
+        btnClass = [classes.Button, classes.Red].join(' ');
     }
 
     return (
         // needs to be wrapped into a div
-        <div className={classes.Cockpit}>
+        <div>
             <h1>{props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>This is first paragraph</p>
             <button
