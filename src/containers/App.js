@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 // if we use PureComponent: shouldComponentUpdate is already built , no need to check for the updates.
 class App extends PureComponent {
@@ -116,7 +117,7 @@ componentDidUpdate() {
     }
 
     return (
-        <div className={classes.App}>
+        <WithClass classes={classes.App}>
             <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
             <Cockpit 
             // props comes with Components, therefore we can acess it with this.props
@@ -126,7 +127,7 @@ componentDidUpdate() {
             persons={this.state.persons}
             clicked={this.togglePersonHandler}/>
             {persons}
-        </div>
+        </WithClass>
     );
   }
 }
