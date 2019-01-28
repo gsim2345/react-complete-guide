@@ -28,13 +28,20 @@ class Person extends Component {
   // 3.
     render() {
         console.log('[Person.js] Inside render()');
+        /*
         return (
             <div className={classes.Person}>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old. </p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name}/>
             </div>
-        )
+        )*/
+        // you can't return multiple elements without a wrapping div, but can return an array. Key needs to be added though in that case
+        return [
+            <p key='1' onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old. </p>,
+            <p key='2'>{this.props.children}</p>,
+            <input key='3' type="text" onChange={this.props.changed} value={this.props.name}/>
+        ]
     }
 }
 
