@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Cockpit.css'
+import Aux from '../../hoc/Aux';
 
 const cockpit = (props) => {
 
@@ -18,14 +19,15 @@ const cockpit = (props) => {
     }
 
     return (
-        // needs to be wrapped into a div
-        <div>
+        // needs to be wrapped into a div, if more elements included
+        // or can be wrapped into a Higher Order Component, then we don't need the div
+        <Aux>
             <h1>{props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>This is first paragraph</p>
             <button
                 className={btnClass}
                 onClick={props.clicked}>Switch name</button>
-        </div>
+        </Aux>
     );
 } 
 
