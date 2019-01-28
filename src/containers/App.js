@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-class App extends Component {
+// if we use PureComponent: shouldComponentUpdate is already built , no need to check for the updates.
+class App extends PureComponent {
   // Component lyfecycle hooks: 
   // 1.
   // constructor is the only place where props can pass and used. Otherwise this.props 
@@ -38,12 +39,13 @@ class App extends Component {
   }
 
   // UPDATE lifecycle (state)
+  /*
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState);
     // if no state changed, we don't update
     return nextState.persons !== this.state.persons ||
            nextState.showPersons !== this.state.showPersons;  
-}
+}*/
 
 // UPDATE LIFECYCLE (state)
 componentWillUpdate(nextProps, nextState) {

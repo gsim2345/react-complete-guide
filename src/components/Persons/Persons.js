@@ -1,8 +1,8 @@
-import React, { Component} from 'react';
+import React, { PureComponent} from 'react';
 import Person from './Person/Person';
 
-// if arrow function returns the same line, we omit the return statement
-class Persons extends Component {
+// if we use PureComponent: shouldComponentUpdate is already built , no need to check for the updates.
+class Persons extends PureComponent {
   // Component lyfecycle hooks: 
   // 1.
   // constructor is the only place where props can pass and used. Otherwise this.props 
@@ -34,13 +34,14 @@ class Persons extends Component {
   // UPDATE LIFECYCLE
   // return true: updating continue, return false, updating stops
   // worth to turn a component to a Class and add these lifecycle hooks, if for example receives a lot of props, and you only want to rerender if one of the props is changing.
+  /*
   shouldComponentUpdate(nextProps, nextState) {
       console.log('[UPDATE Persons.js] Inside shouldComponentUpdate', nextProps, nextState);
       // if no property changed, we don't update
       return nextProps.persons !== this.props.persons || nextProps.changed !== this.props.changed ||
       nextProps.clicked !== this.props.clicked;
       
-  }
+  }*/
 
   // UPDATE LIFECYCLE
   componentWillUpdate(nextProps, nextState) {
