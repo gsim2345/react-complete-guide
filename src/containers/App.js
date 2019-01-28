@@ -36,6 +36,23 @@ class App extends Component {
   componentDidMount() {
     console.log('[App.js] Inside componentDidMount()');
   }
+
+  // UPDATE lifecycle (state)
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState);
+    return true;
+}
+
+// UPDATE LIFECYCLE (state)
+componentWillUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
+}
+
+// UPDATE LIFECYCLE (state)
+// we have no nextProps, nextState, as it is after the update. Use this.props, this.state
+componentDidUpdate() {
+  console.log('[UPDATE App.js] Inside componentDidUpdate');
+}
   
 
   nameChangedHandler = (event, id) => {
