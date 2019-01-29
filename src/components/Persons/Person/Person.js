@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import classes from './Person.css';
-import WithClass from '../../../hoc/WithClass';
-import withClass from '../../../hoc/WithClass';
+import withClass from '../../../hoc/withClass';
+import Aux from '../../../hoc/Aux';
 
 class Person extends Component {
     // Component lyfecycle hooks: 
@@ -32,11 +32,11 @@ class Person extends Component {
         console.log('[Person.js] Inside render()');
         
         return (
-            <WithClass classes={classes.Person}>
+            <Aux>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old. </p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name}/>
-            </WithClass>
+            </Aux>
         )
         // you can't return multiple elements without a wrapping div, but can return an array. Key needs to be added though in that case
         /*
@@ -48,4 +48,4 @@ class Person extends Component {
     }
 }
 
-export default Person;
+export default withClass(Person, classes.Person);

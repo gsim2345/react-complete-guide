@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import Aux from '../hoc/Aux';
+import withClass from '../hoc/withClass';
 
 // if we use PureComponent: shouldComponentUpdate is already built , no need to check for the updates.
 class App extends PureComponent {
@@ -117,7 +118,7 @@ componentDidUpdate() {
     }
 
     return (
-        <WithClass classes={classes.App}>
+        <Aux>
             <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
             <Cockpit 
             // props comes with Components, therefore we can acess it with this.props
@@ -127,9 +128,9 @@ componentDidUpdate() {
             persons={this.state.persons}
             clicked={this.togglePersonHandler}/>
             {persons}
-        </WithClass>
+        </Aux> 
     );
   }
 }
-
-export default App;
+            // the css class we want to assign
+export default withClass(App, classes.App);
