@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Component} from 'react';
 
-// normal JS function, not a function component. It returns a function that qualifies as a functional component. 
+// if you need lifecycle hooks, plan on reaching out to the web, fx. grab the currently auhenticated user and do something with that, need a stateful component. 
+
+// a simple function that returns a class
 const withClass = (WrappedComponent, className) => {
-    return (props) => (
-        // need to pass props into WrappedComponent
-        // possible only with copying the props with the spread operator, it splits into key-value pairs and passes in
-        <div className={className}>
-            <WrappedComponent {...props}/>
-        </div>
-    )
+    // there is no class name, it's like an anonymous class
+    return class extends Component {
+        render() {
+            return (
+                <div className={className}>
+                    <WrappedComponent {...this.props}/>
+                </div>
+            )
+        }
+    }
 }
 
 export default withClass;
