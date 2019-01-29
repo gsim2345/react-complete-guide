@@ -23,7 +23,8 @@ class App extends PureComponent {
         {id: "id3", name: "Stephanie", age: 26}
       ], 
       otherState: 'some other value',
-      showPersons: false
+      showPersons: false, 
+      toggleClicked:0
     }
   }
 
@@ -88,7 +89,20 @@ componentDidUpdate() {
 
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});
+    // incorrect way of update state, because setState is executing asyncrunously. If we call a setState elsewhere, it might finish earlier, and this.state here might not be correct.
+    //this.setState({
+    //  showPersons: !doesShow, 
+    //  toggleClicked: this.state.toggleClicked + 1}
+    //);
+    
+    // if you plan on using this.state inside setstate, the correct way => function syntax
+    this.setState( (prevState, props) => {
+        return {
+          showPersons:!doesShow,
+          toggleClicked: prevState.toggleClicked + 1
+        }
+    });
+
   }
 
   deletePersonHandler = (personIndex) => {
