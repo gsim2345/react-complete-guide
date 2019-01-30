@@ -27,6 +27,11 @@ class Person extends Component {
   // 4.
   componentDidMount() {
     console.log('[Person.js] Inside componentDidMount()');
+    // focusing the element that got created with ref
+    // if we want to focus the first input element: 
+    if (this.props.position === 0) {
+        this.inputElement.focus();  
+    }
   }
   
 // Component lyfecycle hooks:
@@ -34,11 +39,21 @@ class Person extends Component {
     render() {
         console.log('[Person.js] Inside render()');
         
+        // if you want to focus() on that input after render:
+        // use ref - only available in stateful components
+        // can add a new property to the class, which can be then easily used from anywhere in the class. 
+        // will be created when render runs, so we can reference from componentDidMount(), that runs after render()
+        // can be used on own components as well, not only html elements
+
         return (
             <Aux>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old. </p>
                 <p>{this.props.children}</p>
-                <input type="text" onChange={this.props.changed} value={this.props.name}/>
+                <input 
+                ref={(inp) => { this.inputElement = inp }}
+                type="text" 
+                onChange={this.props.changed} 
+                value={this.props.name}/>
             </Aux>
         )
         // you can't return multiple elements without a wrapping div, but can return an array. Key needs to be added though in that case
