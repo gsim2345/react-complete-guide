@@ -2,6 +2,9 @@ import React, { Component} from 'react';
 import classes from './Person.css';
 import withClass from '../../../hoc/withClass';
 import Aux from '../../../hoc/Aux';
+//npm install --save prop-types
+import PropTypes from 'prop-types';
+import { types } from 'util';
 
 class Person extends Component {
     // Component lyfecycle hooks: 
@@ -47,5 +50,16 @@ class Person extends Component {
         ]*/
     }
 }
+
+// validating properties:
+Person.propTypes = {
+    // the passed value has to be a function
+    click: PropTypes.func , 
+    // the passed value has to be a string
+    name: PropTypes.string, 
+    age: PropTypes.number,
+    changed: PropTypes.func
+};
+//https://reactjs.org/docs/typechecking-with-proptypes.html
 
 export default withClass(Person, classes.Person);
