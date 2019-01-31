@@ -5,6 +5,14 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import Aux from '../hoc/Aux';
 import withClass from '../hoc/withClass';
 
+// new context API , > 16.3
+export const AuthContext = React.createContext();
+// false - default value
+// use in JSX code
+// providers, consumers
+// we can pass data around without the chaning of props with it. 
+// great for global settings
+
 // if we use PureComponent: shouldComponentUpdate is already built , no need to check for the updates.
 class App extends PureComponent {
   // Component lyfecycle hooks: 
@@ -52,9 +60,11 @@ class App extends PureComponent {
 }*/
 
 // UPDATE LIFECYCLE (state)
+// also discouraged to use, as well componentWillReceiveProps
 componentWillUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
 }
+
 
 // UPDATE LIFECYCLE (state)
 // we have no nextProps, nextState, as it is after the update. Use this.props, this.state
@@ -134,14 +144,12 @@ componentDidUpdate() {
       persons = <Persons 
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler}
-          isAuthenticated={this.state.authenticated}/>  
+          changed={this.nameChangedHandler}/>  
           
     }
 
     return (
         <Aux>
-            <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
             <Cockpit 
             // props comes with Components, therefore we can acess it with this.props
             // there is no props passed into render, so we use this.props
@@ -150,7 +158,12 @@ componentDidUpdate() {
             persons={this.state.persons}
             login={this.loginHandler}
             clicked={this.togglePersonHandler}/>
+            
+            <AuthContext.Provider value=
+            // providing context to all childcomponents in persons
+            {this.state.authenticated}>
             {persons}
+            </AuthContext.Provider>
         </Aux> 
     );
   }

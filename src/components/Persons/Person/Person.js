@@ -5,6 +5,7 @@ import Aux from '../../../hoc/Aux';
 //npm install --save prop-types
 import PropTypes from 'prop-types';
 import { types } from 'util';
+import {AuthContext} from '../../../containers/App';
 
 class Person extends Component {
     // Component lyfecycle hooks: 
@@ -41,15 +42,16 @@ class Person extends Component {
     render() {
         console.log('[Person.js] Inside render()');
         
-        // if you want to focus() on that input after render:
-        // use ref - only available in stateful components
-        // can add a new property to the class, which can be then easily used from anywhere in the class. 
-        // will be created when render runs, so we can reference from componentDidMount(), that runs after render()
-        // can be used on own components as well, not only html elements
 
+        
         return (
+            // we wrap the element that we want to use the context element on.
+            // inside AuthContext.consumer we need to execute a method, that receives one argument, the data we are passing down. Can be object too, now it's boolian. 
+            // Here we check if our argument (here auth) is true, then write sg, and null if not. 
             <Aux>
-                {this.props.authenticated ? <p>I'm authenticated!</p> : null}
+                <AuthContext.Consumer> 
+                { auth => auth ? <p>I'm authenticated!</p> : null}
+                </AuthContext.Consumer>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old. </p>
                 <p>{this.props.children}</p>
                 <input 
