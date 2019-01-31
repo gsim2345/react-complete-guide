@@ -65,6 +65,30 @@ componentWillUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
 }
 
+// Instead adds 2 new ones:
+// executes when your props get updated, and gives a possibility to updates your state with it. Usually you don't want that, but there are cases. 
+//called before render()
+// gives a chance to update the state right before render
+// will reexecute whenever our props change
+static getDerivedStateFromProps(nextProps, prevState) {
+  console.log('[UPDATE App.js] Inside getDerivedStateFromProps', nextProps, prevState);
+
+  // return new state in object
+  //return {}
+  // or return prevState, if you not update
+  return prevState;
+
+}
+
+// Another new lifecycle function 
+// gives a snapshot of your DOM right before it's about to change
+// executes right before componentDidMount and ComponentDidUpdate
+// good place fx. save the current scrolling position of the user, and then i componentDidUpdate can set the scroll position to here again. 
+//https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate
+getSnapshotBeforeUpdate() {
+  console.log('[UPDATE App.js] Inside getSnapshotBeforeUpdate');
+}
+
 
 // UPDATE LIFECYCLE (state)
 // we have no nextProps, nextState, as it is after the update. Use this.props, this.state
