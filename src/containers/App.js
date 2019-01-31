@@ -5,6 +5,12 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import Aux from '../hoc/Aux';
 import withClass from '../hoc/withClass';
 
+// new context API , > 16.3
+export const AuthContext = React.createContext(false);
+// false - default value
+// use in JSX code
+// providers, consumers
+
 // if we use PureComponent: shouldComponentUpdate is already built , no need to check for the updates.
 class App extends PureComponent {
   // Component lyfecycle hooks: 
@@ -134,8 +140,7 @@ componentDidUpdate() {
       persons = <Persons 
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler}
-          isAuthenticated={this.state.authenticated}/>  
+          changed={this.nameChangedHandler}/>  
           
     }
 
@@ -150,7 +155,12 @@ componentDidUpdate() {
             persons={this.state.persons}
             login={this.loginHandler}
             clicked={this.togglePersonHandler}/>
+            
+            <AuthContext.Provider value=
+            // providing context to all childcomponents in persons
+            {this.state.authenticated}>
             {persons}
+            </AuthContext.Provider>
         </Aux> 
     );
   }
