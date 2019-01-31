@@ -33,4 +33,5 @@ const cockpit = (props) => {
     );
 } 
 
-export default cockpit;
+// with react 16.4 .memo can be added to function components as well. This checks if there was any changes in the props, and rerenders only if there was.
+export default  React.memo(cockpit);
