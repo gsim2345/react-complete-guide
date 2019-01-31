@@ -10,6 +10,8 @@ export const AuthContext = React.createContext(false);
 // false - default value
 // use in JSX code
 // providers, consumers
+// we can pass data around without the chaning of props with it. 
+// great for global settings
 
 // if we use PureComponent: shouldComponentUpdate is already built , no need to check for the updates.
 class App extends PureComponent {

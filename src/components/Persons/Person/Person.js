@@ -47,8 +47,10 @@ class Person extends Component {
         return (
             // we wrap the element that we want to use the context element on.
             <Aux>
-                <AuthContext.consumer>
-                {this.props.authenticated ? <p>I'm authenticated!</p> : null}
+                <AuthContext.consumer> 
+                { // inside AuthContext.consumer we need to execute a method, that receives one argument, the data we are passing down. Can be object too, now it's boolian. 
+                // Here we check if our argument (here auth) is true, then write sg, and null if not. 
+                    auth => auth ? <p>I'm authenticated!</p> : null}
                 </AuthContext.consumer>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old. </p>
                 <p>{this.props.children}</p>
