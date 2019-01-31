@@ -24,7 +24,8 @@ class App extends PureComponent {
       ], 
       otherState: 'some other value',
       showPersons: false, 
-      toggleClicked:0
+      toggleClicked:0, 
+      authenticated: false
     }
   }
 
@@ -116,6 +117,11 @@ componentDidUpdate() {
     this.setState({persons: persons});
   }
 
+   
+  loginHandler = () => {
+    // I want to change sg in Person component, if this is set to true.
+    this.setState({authenticated: true});
+  }
 
   // component lifecycle hooks: 
   // 3. 
@@ -128,7 +134,9 @@ componentDidUpdate() {
       persons = <Persons 
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler}/>  
+          changed={this.nameChangedHandler}
+          isAuthenticated={this.state.authenticated}/>  
+          
     }
 
     return (
@@ -140,6 +148,7 @@ componentDidUpdate() {
             appTitle={this.props.title}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
+            login={this.loginHandler}
             clicked={this.togglePersonHandler}/>
             {persons}
         </Aux> 
