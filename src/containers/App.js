@@ -6,7 +6,7 @@ import Aux from '../hoc/Aux';
 import withClass from '../hoc/withClass';
 
 // new context API , > 16.3
-export const AuthContext = React.createContext();
+export const AuthContext = React.createContext(false);
 // false - default value
 // use in JSX code
 // providers, consumers
